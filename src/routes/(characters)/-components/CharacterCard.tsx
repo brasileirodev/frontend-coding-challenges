@@ -1,5 +1,6 @@
+import { Link } from "@tanstack/react-router";
 import { cn } from "@lib/utils";
-import { Character } from "@lib/constants/characters";
+import type { Character } from "@lib/constants/characters";
 
 type CharacterCardProps = {
   character: Character;
@@ -8,9 +9,12 @@ type CharacterCardProps = {
 
 export const CharacterCard = ({ character, className }: CharacterCardProps) => {
   return (
-    <article
+    <Link
+      to="/characters/$characterId"
+      params={{ characterId: character.id }}
+      aria-label={`View details for ${character.name}`}
       className={cn(
-        "relative isolate flex h-87.5 flex-col justify-end overflow-hidden rounded-2xl px-3 py-6 shadow-md shadow-zinc-950",
+        "relative isolate flex h-87.5 flex-col justify-end overflow-hidden rounded-2xl px-3 py-6 shadow-md shadow-zinc-950 outline-none focus-visible:ring-2 focus-visible:ring-amber-200",
         className
       )}
     >
@@ -21,6 +25,6 @@ export const CharacterCard = ({ character, className }: CharacterCardProps) => {
       />
       <div className="absolute inset-0 bg-linear-to-t from-gray-950 via-stone-900/20"></div>
       <h3 className="z-10 font-light tracking-wide">{character.name}</h3>
-    </article>
+    </Link>
   );
 };
