@@ -42,13 +42,5 @@
     "tailwindcss": "^4.2.2",
     "zod": "^3.25.36",
     "zustand": "^5.0.12"
-  },
-  "pnpm": {
-    "ignoredBuiltDependencies": [
-      "esbuild"
-    ],
-    "onlyBuiltDependencies": [
-      "esbuild"
-    ]
   }
 }
