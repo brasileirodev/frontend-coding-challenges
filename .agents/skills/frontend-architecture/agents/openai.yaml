@@ -1,0 +1,4 @@
+interface:
+  display_name: "Frontend Architecture"
+  short_description: "Apply type-safe frontend architecture patterns"
+  default_prompt: "Use $frontend-architecture to implement this change with the repository architecture patterns."
