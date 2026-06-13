@@ -6,7 +6,7 @@ import { Character } from "@lib/constants/characters";
 export const useCharacters = () => {
   const { preferredHouse } = useAppStore();
   const { data, ...rest } = useQuery<Character[]>({
-    queryKey: ["characters"],
+    queryKey: ["characters", preferredHouse],
     queryFn: () => fetchCharacters(preferredHouse),
     staleTime: Infinity,
   });
