@@ -44,8 +44,13 @@ export const CharactersGrid = () => {
 
   return (
     <div className="flex flex-col gap-8 pb-10">
-      <div className="mx-auto flex max-w-full gap-1 overflow-x-auto rounded-xl bg-black/15 p-1">
-        <Button type="button" active={filter === null} onClick={() => setFilter(null)}>
+      <div className="mx-auto flex h-10 w-[474px] max-w-full items-center overflow-x-auto rounded-xl bg-[#211513] p-1">
+        <Button
+          type="button"
+          active={filter === null}
+          onClick={() => setFilter(null)}
+          className="font-filter h-8 justify-center gap-1 px-4 py-2 text-base leading-4 font-medium"
+        >
           All Characters
         </Button>
         {characterFilters.map((characterFilter) => (
@@ -54,6 +59,7 @@ export const CharactersGrid = () => {
             type="button"
             active={filter === characterFilter}
             onClick={() => setFilter(characterFilter)}
+            className="font-filter h-8 justify-center gap-1 px-4 py-2 text-base leading-4 font-medium"
           >
             {filterLabels[characterFilter]}
           </Button>

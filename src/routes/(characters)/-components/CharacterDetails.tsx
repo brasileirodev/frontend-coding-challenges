@@ -1,4 +1,4 @@
-import { BookOpen, Castle, Sparkles, Star, UserRound } from "lucide-react";
+import { Star, UserRound } from "lucide-react";
 import { InfoSection } from "@lib/components/InfoSection";
 import type { Character } from "@lib/constants/characters";
 import { formatDate } from "@lib/utils";
@@ -49,14 +49,17 @@ export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
           </div>
 
           {aliases && (
-            <p className="mt-3 text-sm leading-5 text-[#5C5A56] sm:text-base">
+            <p className="font-decorative mt-3 text-base leading-[1.3] font-normal tracking-normal text-[#5C5A56]">
               Also known as: {aliases}
             </p>
           )}
         </section>
 
         <section className="rounded-[20px] bg-[#09090B] p-5 shadow-xl shadow-black/20 sm:p-6">
-          <InfoSection title="Basic Information" icon={<UserRound size={20} strokeWidth={1.5} />}>
+          <InfoSection
+            title="Basic Information"
+            icon={<img src="/user.svg" alt="" aria-hidden="true" className="h-5 w-auto shrink-0" />}
+          >
             <InfoSection.Grid>
               <InfoSection.Item label="Species" value={displayText(character.species)} />
               <InfoSection.Item label="Gender" value={displayText(character.gender)} />
@@ -72,7 +75,12 @@ export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
 
           <InfoSection.Divider />
 
-          <InfoSection title="Magical Information" icon={<Sparkles size={20} strokeWidth={1.5} />}>
+          <InfoSection
+            title="Magical Information"
+            icon={
+              <img src="/sparkles.svg" alt="" aria-hidden="true" className="h-5 w-auto shrink-0" />
+            }
+          >
             <InfoSection.Grid>
               <InfoSection.Item label="Wizard/Witch" value={displayBoolean(character.wizard)} />
               <InfoSection.Item label="Patronus" value={displayText(character.patronus)} />
@@ -81,7 +89,17 @@ export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
 
           <InfoSection.Divider />
 
-          <InfoSection title="Hogwarts" icon={<Castle size={20} strokeWidth={1.5} />}>
+          <InfoSection
+            title="Hogwarts"
+            icon={
+              <img
+                src="/place-of-worship.svg"
+                alt=""
+                aria-hidden="true"
+                className="h-5 w-auto shrink-0"
+              />
+            }
+          >
             <InfoSection.Grid>
               <InfoSection.Item label="Student" value={displayBoolean(character.hogwartsStudent)} />
               <InfoSection.Item label="Staff" value={displayBoolean(character.hogwartsStaff)} />
@@ -90,8 +108,13 @@ export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
 
           <InfoSection.Divider />
 
-          <InfoSection title="Portrayed By" icon={<BookOpen size={20} strokeWidth={1.5} />}>
-            <InfoSection.Item label="Actor and alternates" value={displayText(portrayedBy)} />
+          <InfoSection
+            title="Portrayed By"
+            icon={
+              <img src="/book-open.svg" alt="" aria-hidden="true" className="h-5 w-auto shrink-0" />
+            }
+          >
+            <InfoSection.Item value={displayText(portrayedBy)} />
           </InfoSection>
         </section>
       </div>
