@@ -1,8 +1,14 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { CharacterDetails } from "./CharacterDetails";
 import { mockCharacter } from "../../../test/mocks";
+import { useAppStore } from "@lib/hooks/useAppStore";
 
 describe("CharacterDetails", () => {
+  beforeEach(() => {
+    useAppStore.setState({ favoriteCharacterIds: [] });
+  });
+
   it("renders the required information sections", () => {
     render(<CharacterDetails character={mockCharacter} />);
 
@@ -25,5 +31,21 @@ describe("CharacterDetails", () => {
 
     expect(screen.getAllByText("Not available")).toHaveLength(2);
     expect(screen.queryByText(/Also known as:/)).not.toBeInTheDocument();
+  });
+
+  it("toggles the character favorite state", async () => {
+    const user = userEvent.setup();
+    render(<CharacterDetails character={mockCharacter} />);
+
+    const favoriteButton = screen.getByRole("button", {
+      name: "Add Harry Potter to favorites",
+    });
+
+    await user.click(favoriteButton);
+
+    expect(favoriteButton).toHaveAttribute("aria-pressed", "true");
+    expect(favoriteButton).toHaveAccessibleName("Remove Harry Potter from favorites");
+    expect(useAppStore.getState().favoriteCharacterIds).toEqual([mockCharacter.id]);
+    expect(localStorage.getItem("the-harry-potter-app-storage")).toContain(mockCharacter.id);
   });
 });

@@ -1,6 +1,7 @@
 import { Star, UserRound } from "lucide-react";
 import { InfoSection } from "@lib/components/InfoSection";
 import type { Character } from "@lib/constants/characters";
+import { useAppStore } from "@lib/hooks/useAppStore";
 import { formatDate } from "@lib/utils";
 
 type CharacterDetailsProps = {
@@ -15,6 +16,8 @@ const displayBoolean = (value?: boolean) => {
 
 export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
   const characterName = character.name || "Unknown character";
+  const isFavorite = useAppStore((state) => state.favoriteCharacterIds.includes(character.id));
+  const toggleFavoriteCharacter = useAppStore((state) => state.toggleFavoriteCharacter);
   const aliases = character.alternate_names?.join(", ") || "";
   const portrayedBy = [character.actor, ...(character.alternate_actors ?? [])]
     .filter(Boolean)
@@ -37,12 +40,17 @@ export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
               </div>
             )}
             <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent" />
-            <Star
-              aria-hidden="true"
-              className="absolute top-3 right-3 text-[#F1DBB5]/60"
-              size={20}
-              strokeWidth={1.5}
-            />
+            <button
+              type="button"
+              aria-label={`${isFavorite ? "Remove" : "Add"} ${characterName} ${
+                isFavorite ? "from" : "to"
+              } favorites`}
+              aria-pressed={isFavorite}
+              onClick={() => toggleFavoriteCharacter(character.id)}
+              className="absolute top-3 right-3 z-20 rounded-full p-2 text-[#F1DBB5]/80 outline-none hover:bg-black/35 hover:text-[#F1DBB5] focus-visible:ring-2 focus-visible:ring-[#F1DBB5]"
+            >
+              <Star size={20} strokeWidth={1.5} fill={isFavorite ? "currentColor" : "none"} />
+            </button>
             <h1 className="absolute right-3 bottom-5 left-3 text-lg font-normal text-[#F1DBB5]">
               {characterName}
             </h1>
