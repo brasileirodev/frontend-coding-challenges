@@ -1,5 +1,6 @@
 import { useRouter, useRouterState } from "@tanstack/react-router";
 import { ArrowLeft, Shield } from "lucide-react";
+import { Button, IconButton } from "@lib/components";
 import { useAppStore } from "@lib/hooks/useAppStore";
 
 export const Toolbar = () => {
@@ -20,25 +21,27 @@ export const Toolbar = () => {
       <div className="flex flex-1 items-center">
         <div className="mr-4 flex w-8 items-center justify-center">
           {!isRootRoute && (
-            <button
+            <IconButton
+              label="Go back"
               onClick={() => router.history.back()}
-              className="text-amber-200 hover:text-amber-100"
+              className="p-1 text-amber-200 hover:text-amber-100 focus-visible:ring-2 focus-visible:ring-amber-200"
             >
-              <ArrowLeft size={20} />
-            </button>
+              <ArrowLeft aria-hidden="true" size={20} />
+            </IconButton>
           )}
         </div>
         <h1 className="text-xl font-medium text-amber-200">The Harry Potter App</h1>
       </div>
 
-      <button
+      <Button
+        variant="ghost"
         onClick={handleHouseSelection}
-        className="flex items-center gap-2 pr-9 text-amber-200 hover:text-amber-100"
+        className="gap-2 pr-9"
         aria-label="Change house selection"
       >
         <span className="text-sm font-medium">Change House</span>
-        <Shield size={20} />
-      </button>
+        <Shield aria-hidden="true" size={20} />
+      </Button>
     </div>
   );
 };

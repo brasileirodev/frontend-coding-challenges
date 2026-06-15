@@ -1,4 +1,6 @@
-export const Item = ({ label, value }: { label?: string; value: React.ReactNode }) => (
+import type { ReactNode } from "react";
+
+export const Item = ({ label, value }: { label?: string; value: ReactNode }) => (
   <div className="flex flex-col gap-2">
     {label && (
       <p className="font-decorative text-base leading-[1.3] font-normal tracking-normal text-[#53524F]">

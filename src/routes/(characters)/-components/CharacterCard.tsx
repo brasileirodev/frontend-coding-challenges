@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Star } from "lucide-react";
+import { FavoriteButton } from "@lib/components";
 import { cn } from "@lib/utils";
 import type { Character } from "@lib/constants/characters";
 
@@ -40,17 +40,12 @@ export const CharacterCard = ({
         <h3 className="z-10 font-light tracking-wide">{characterName}</h3>
       </Link>
 
-      <button
-        type="button"
-        aria-label={`${isFavorite ? "Remove" : "Add"} ${characterName} ${
-          isFavorite ? "from" : "to"
-        } favorites`}
-        aria-pressed={isFavorite}
-        onClick={() => onFavoriteToggle(character.id)}
-        className="absolute top-3 right-3 z-20 rounded-full p-2 text-amber-100/80 outline-none hover:bg-black/35 hover:text-amber-100 focus-visible:ring-2 focus-visible:ring-amber-200"
-      >
-        <Star size={20} fill={isFavorite ? "currentColor" : "none"} />
-      </button>
+      <FavoriteButton
+        subjectName={characterName}
+        isFavorite={isFavorite}
+        onToggle={() => onFavoriteToggle(character.id)}
+        className="absolute top-3 right-3 z-20"
+      />
     </article>
   );
 };

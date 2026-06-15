@@ -1,16 +1,15 @@
+import type { ReactNode } from "react";
 import { Divider } from "./Divider";
 import { Grid } from "./Grid";
 import { Item } from "./Item";
 
-export const InfoSection = ({
-  title,
-  icon,
-  children,
-}: {
+export type InfoSectionProps = {
+  children: ReactNode;
+  icon: ReactNode;
   title: string;
-  icon: React.ReactNode;
-  children: React.ReactNode;
-}) => (
+};
+
+export const InfoSection = ({ title, icon, children }: InfoSectionProps) => (
   <div>
     <h3 className="font-decorative mb-3 flex items-center gap-2 text-[22px] leading-[1.3] font-bold tracking-normal text-[#F1DBB5]">
       {icon}

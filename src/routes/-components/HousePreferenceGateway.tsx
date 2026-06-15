@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { Button } from "@lib/components/Button";
+import type { ReactNode } from "react";
+import { Button } from "@lib/components";
 import { useAppStore } from "@lib/hooks/useAppStore";
 import { houses } from "@lib/constants/houses";
 import { HouseCard } from "./HouseCard";

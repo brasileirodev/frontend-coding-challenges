@@ -1,5 +1,5 @@
-import { Star, UserRound } from "lucide-react";
-import { InfoSection } from "@lib/components/InfoSection";
+import { UserRound } from "lucide-react";
+import { DecorativeIcon, FavoriteButton, InfoSection } from "@lib/components";
 import type { Character } from "@lib/constants/characters";
 import { useAppStore } from "@lib/hooks/useAppStore";
 import { formatDate } from "@lib/utils";
@@ -40,17 +40,12 @@ export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
               </div>
             )}
             <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent" />
-            <button
-              type="button"
-              aria-label={`${isFavorite ? "Remove" : "Add"} ${characterName} ${
-                isFavorite ? "from" : "to"
-              } favorites`}
-              aria-pressed={isFavorite}
-              onClick={() => toggleFavoriteCharacter(character.id)}
-              className="absolute top-3 right-3 z-20 rounded-full p-2 text-[#F1DBB5]/80 outline-none hover:bg-black/35 hover:text-[#F1DBB5] focus-visible:ring-2 focus-visible:ring-[#F1DBB5]"
-            >
-              <Star size={20} strokeWidth={1.5} fill={isFavorite ? "currentColor" : "none"} />
-            </button>
+            <FavoriteButton
+              subjectName={characterName}
+              isFavorite={isFavorite}
+              onToggle={() => toggleFavoriteCharacter(character.id)}
+              className="absolute top-3 right-3 z-20"
+            />
             <h1 className="absolute right-3 bottom-5 left-3 text-lg font-normal text-[#F1DBB5]">
               {characterName}
             </h1>
@@ -64,10 +59,7 @@ export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
         </section>
 
         <section className="rounded-[20px] bg-[#09090B] p-5 shadow-xl shadow-black/20 sm:p-6">
-          <InfoSection
-            title="Basic Information"
-            icon={<img src="/user.svg" alt="" aria-hidden="true" className="h-5 w-auto shrink-0" />}
-          >
+          <InfoSection title="Basic Information" icon={<DecorativeIcon src="/user.svg" />}>
             <InfoSection.Grid>
               <InfoSection.Item label="Species" value={displayText(character.species)} />
               <InfoSection.Item label="Gender" value={displayText(character.gender)} />
@@ -83,12 +75,7 @@ export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
 
           <InfoSection.Divider />
 
-          <InfoSection
-            title="Magical Information"
-            icon={
-              <img src="/sparkles.svg" alt="" aria-hidden="true" className="h-5 w-auto shrink-0" />
-            }
-          >
+          <InfoSection title="Magical Information" icon={<DecorativeIcon src="/sparkles.svg" />}>
             <InfoSection.Grid>
               <InfoSection.Item label="Wizard/Witch" value={displayBoolean(character.wizard)} />
               <InfoSection.Item label="Patronus" value={displayText(character.patronus)} />
@@ -97,17 +84,7 @@ export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
 
           <InfoSection.Divider />
 
-          <InfoSection
-            title="Hogwarts"
-            icon={
-              <img
-                src="/place-of-worship.svg"
-                alt=""
-                aria-hidden="true"
-                className="h-5 w-auto shrink-0"
-              />
-            }
-          >
+          <InfoSection title="Hogwarts" icon={<DecorativeIcon src="/place-of-worship.svg" />}>
             <InfoSection.Grid>
               <InfoSection.Item label="Student" value={displayBoolean(character.hogwartsStudent)} />
               <InfoSection.Item label="Staff" value={displayBoolean(character.hogwartsStaff)} />
@@ -116,12 +93,7 @@ export const CharacterDetails = ({ character }: CharacterDetailsProps) => {
 
           <InfoSection.Divider />
 
-          <InfoSection
-            title="Portrayed By"
-            icon={
-              <img src="/book-open.svg" alt="" aria-hidden="true" className="h-5 w-auto shrink-0" />
-            }
-          >
+          <InfoSection title="Portrayed By" icon={<DecorativeIcon src="/book-open.svg" />}>
             <InfoSection.Item value={displayText(portrayedBy)} />
           </InfoSection>
         </section>

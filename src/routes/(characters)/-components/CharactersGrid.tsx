@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Spinner } from "@lib/components/Spinner";
-import { Button } from "@lib/components/Button";
+import { Button, FeedbackState, Spinner } from "@lib/components";
 import { CharacterCard } from "./CharacterCard";
 import { useCharacters } from "../-hooks/useCharacters";
 import { useAppStore } from "@lib/hooks/useAppStore";
@@ -35,10 +34,11 @@ export const CharactersGrid = () => {
 
   if (isError) {
     return (
-      <div className="flex flex-col items-center gap-4 py-20 text-center">
-        <p className="text-lg text-amber-200/60">Something went wrong while fetching characters.</p>
-        <p className="text-sm text-amber-200/30">Please try again later.</p>
-      </div>
+      <FeedbackState
+        title="Something went wrong while fetching characters."
+        description="Please try again later."
+        className="gap-4"
+      />
     );
   }
 
@@ -67,10 +67,7 @@ export const CharactersGrid = () => {
       </div>
 
       {visibleCharacters.length === 0 ? (
-        <div className="flex flex-col items-center gap-2 py-20 text-center">
-          <p className="text-lg text-amber-200/60">No characters found.</p>
-          <p className="text-sm text-amber-200/30">Try adjusting your filters.</p>
-        </div>
+        <FeedbackState title="No characters found." description="Try adjusting your filters." />
       ) : (
         <div className="container mx-auto grid w-min grid-cols-[repeat(auto-fill,minmax(200px,max-content))] gap-4">
           {visibleCharacters.map((character) => (
