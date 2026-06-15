@@ -23,6 +23,9 @@ the repo skill at `.agents/skills/frontend-architecture/SKILL.md`.
 - Keep route files focused on URL validation, loaders, route-level states, and composition.
 - Keep components presentational when possible; move data orchestration to route loaders, query
   options, or focused hooks.
+- Follow `docs/engineering/ui-components.md` for Atomic Design placement, promotion, variants, and
+  component API rules.
+- Reuse shared atoms and molecules instead of recreating their interaction or accessibility logic.
 
 ## State Ownership
 

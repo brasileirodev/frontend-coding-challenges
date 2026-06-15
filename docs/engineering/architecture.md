@@ -22,7 +22,7 @@ responsibilities and decision criteria without prescribing product features or d
 src/
   lib/
     api/          HTTP boundaries, schemas, and query definitions
-    components/   shared UI
+    components/   shared Atomic Design UI (atoms, molecules, and proven shared organisms)
     constants/    shared finite values
     hooks/        application-wide client behavior
     utils/        shared pure helpers
@@ -68,6 +68,7 @@ hide shareable navigation state only in component state.
 - Provide a single `QueryClient` to React Query and router context.
 - Type root route context with `createRootRouteWithContext`.
 - Keep route-private modules colocated in route-excluded directories.
+- Classify shared UI with Atomic Design and follow `ui-components.md` for promotion and API rules.
 - Extend native HTML attributes when building reusable primitives.
 - Use the shared class-merging helper for conditional Tailwind classes.
 - Keep network parsing, cache definitions, navigation contracts, and rendering responsibilities
@@ -92,3 +93,5 @@ and feature-specific workflows remain outside these architecture documents.
 - New shareable navigation control: add it to the route search schema and typed navigation.
 - New durable client preference: add a focused store state/action and persistence test.
 - New generic UI primitive: add it to `src/lib/components` only after reuse is demonstrated.
+- New shared UI: place it in the lowest Atomic Design layer that matches its dependencies; keep
+  feature orchestration beside the route.

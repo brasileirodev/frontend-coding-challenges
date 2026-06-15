@@ -33,6 +33,8 @@ description: Implement or review frontend architecture using React, TanStack Rou
   `/docs/engineering/routing.md`
 - Types, component contracts, or tests:
   `/docs/engineering/typescript-and-testing.md`
+- Shared UI, component APIs, styling variants, or Atomic Design:
+  `/docs/engineering/ui-components.md`
 
 ## Guardrails
 
@@ -43,3 +45,4 @@ description: Implement or review frontend architecture using React, TanStack Rou
 - Do not omit server request dependencies from query keys.
 - Do not trust external JSON without runtime validation.
 - Do not bypass strict TypeScript with `any`, unchecked assertions, or suppressions.
+- Do not move route, query, store, or domain orchestration into Atomic Design components.
